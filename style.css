@@ -81,10 +81,16 @@ align-items: center;
 a:hover:hover{
     background-color: #5161ce;
 }
-
-
+/* .like-btn:active{
+    background-color: red!important;
+}
+ */
 
 
 .row{
     justify-content: center;
+}
+
+.like{
+background-color: red  !important;
 }

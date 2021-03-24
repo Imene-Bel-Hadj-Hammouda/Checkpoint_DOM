@@ -1,4 +1,18 @@
+
+
+
+
 $(document).ready(function() {
+    //delete button
+var removeCartItemButtons =document.getElementsByClassName('delete')
+for (var i = 0; i<removeCartItemButtons.length;i++) {
+    var button = removeCartItemButtons[i]
+    button.addEventListener('click', function(event)  {
+        var buttonClicked = event.target
+         buttonClicked.parentElement.parentElement.parentElement.parentElement.remove()
+         updateCartTotal()
+    }
+    )}
  //increment
     for (var i = 0; i< document.getElementsByClassName('cart-qty-plus').length; i++){
 
@@ -14,6 +28,7 @@ $(document).ready(function() {
 
                 // document.getElementsByClassName("amount").innerText = amount
                 e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.children[0].innerText = amount
+                updateCartTotal()
              
          }       
         
@@ -33,6 +48,7 @@ $(document).ready(function() {
 
                 // document.getElementsByClassName("amount").innerText = amount
                 e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.children[0].innerText = amount
+                updateCartTotal()
                
         }
    
@@ -40,69 +56,31 @@ $(document).ready(function() {
     
     }
 
-   
+   //update total
+   function updateCartTotal(){
+      
+      
+      const amounts = document.getElementsByClassName('amount');
+      var total= 0;
+      for (let i = 0; i < amounts.length; i++) {
+          total = total+parseInt(amounts[i].innerHTML);
+          
+      }
+    document.getElementById('total').innerText = total
+   }
 
 
     })
 
 
-
-//     update_amounts();
-//     $('.qty, .price').on('keyup keypress blur change',
-//      function(e) {
-//      update_amounts();
- 
-//              });
-//     });
-// function update_amounts() {
-//     var sum = 0.0;
-//     $('#myTable > tbody > tr').each(function() {
-//         var qty = $(this).find('.qty').val();
-//         var price = $(this).find('.price').val();
-//         var amount = (qty*price);
-//         sum+=amount;
-//         $(this).find('.amount').text(''+amount);
-
-//     });
-//       $('.total').text(sum);
-// }
-
-//like btn//
-$('.like-btn').on('click', function() {
-    $(this).toggleClass('is-active');
- });
-
-
- //delete btn//
- $('.delete-btn').on('click', function() {
-    $(this).toggleClass('is-active');
- });
-
-
-// //---for inc et dec---//
-// var incrementQty;
-// var decrementQty;
-// var plusBtn = document.getElementsByClassName('cart-qty-plus');
-// var minusBtn = document.getElementsByClassName('cart-qty-minus');
-
-// var incrementQty = plusBtn.click(function() {
-//     var $n = $(this)
-//     .parent(".button-container")
-//     .find(".qty");
-//     $n.val(Number($n.val())+1 );
-//     update_amounts();
-// });
-
-// var decrementQty = minusBtn.click(function() {
-//     var $n = $(this)
-//     .parent(".button-container")
-//     .find(".qty");
-//     var QtyVal = Number($n.val());
-//     if (QtyVal > 0) {
-//         $n.val(QtyVal-1 );
-//     }
-//     update_amounts();
-// });
+let btnlike=document.getElementsByClassName('fa-heart')
+console.log(btnlike)
+for(i=0;i<btnlike.length;i++)
+{
+    btnlike[i].addEventListener('click',(e)=>{
+        e.target.classList.toggle('like')
+    })
+}
 
 
 
